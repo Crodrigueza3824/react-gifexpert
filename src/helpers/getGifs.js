@@ -4,22 +4,22 @@ export const getGifs = async( category ) => {
 
     const resp = await fetch( url );
 
-    /*const resp = await fetch({ url }, {
-        method: 'GET',
-        mode: 'cors',
-        headers: {
-            'Content-Type': 'application/json',
-        }
-    });*/
+    
+    const { data } = await resp.json();
+    
    
 
-    const { data } = await resp.json();
-
-    const gifs = data.map( img => ({
-        title: img.title,
-        id: img.id,
-        url: img.url
+    
+    
+    const gifs = data.map( images => ({
+        title: images.title,
+        id: images.id,
+        url: images.images.fixed_height_downsampled.url
     }));
+
+    
+
+ 
 
 
     return gifs;
